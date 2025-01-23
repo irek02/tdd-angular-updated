@@ -1,0 +1,26 @@
+<div>
+  <h1>Homes</h1>
+
+  <div>
+    @for (home of homes$ | async; track home) {
+      <div data-test="home">
+        <div>
+          <div data-test="image">
+            <img src="{{ home.image }}" />
+          </div>
+          <div>
+            <div data-test="title">
+              {{ home.title }}
+            </div>
+            <div data-test="location">
+              {{ home.location }}
+            </div>
+            <div data-test="book-btn">
+              <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded" (click)="openDialog(home)">Book</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
