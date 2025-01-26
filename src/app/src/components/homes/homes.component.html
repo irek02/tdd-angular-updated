@@ -1,22 +1,22 @@
-<div>
-  <h1>Homes</h1>
+<div class="container">
+  <h1 class="my-4">Homes</h1>
 
-  <div>
+  <div class="row">
     @for (home of homes$ | async; track home) {
-      <div data-test="home">
-        <div>
+      <div class="col-md-4 mb-4" data-test="home">
+        <div class="card">
           <div data-test="image">
-            <img src="{{ home.image }}" />
+            <img src="{{ home.image }}" class="card-img-top" />
           </div>
-          <div>
-            <div data-test="title">
+          <div class="card-body">
+            <div data-test="title" class="card-title">
               {{ home.title }}
             </div>
-            <div data-test="location">
+            <div data-test="location" class="card-text">
               {{ home.location }}
             </div>
-            <div data-test="book-btn">
-              <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded" (click)="openDialog(home)">Book</button>
+            <div data-test="book-btn" class="mt-3">
+              <button class="btn btn-primary" (click)="openDialog(home)">Book home</button>
             </div>
           </div>
         </div>

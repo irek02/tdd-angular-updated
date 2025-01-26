@@ -1,64 +1,64 @@
-<header>
-  <div>
-    <div>
-      <nav>
-        <div>
+<header class="py-3">
+  <div class="container">
+    <div class="row">
+      <nav class="navbar navbar-expand-sm navbar-light w-100">
+        <div class="navbar-brand">
           <a data-test="logo">
             <img src="favicon.ico" width="40" />
           </a>
         </div>
 
-        <div data-test="search">
-          <form>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <form class="form-inline my-2 my-lg-0 ml-auto" data-test="search">
             <span uk-search-icon></span>
-            <input type="search" placeholder="Anywhere • Homes" />
+            <input class="form-control mr-sm-2" type="search" placeholder="Anywhere • Homes" />
           </form>
-        </div>
-        <div>
-          <ul data-test="menu">
-            <li><a href="">Become a host</a></li>
-            <li><a href="">Help</a></li>
-            <li><a href="">Sign up</a></li>
-            <li><a href="">Login</a></li>
+          <ul class="navbar-nav ms-auto" data-test="menu">
+            <li class="nav-item"><a class="nav-link" href="">Become a host</a></li>
+            <li class="nav-item"><a class="nav-link" href="">Help</a></li>
+            <li class="nav-item"><a class="nav-link" href="">Sign up</a></li>
+            <li class="nav-item"><a class="nav-link" href="">Login</a></li>
           </ul>
         </div>
       </nav>
+    </div>
 
-      <hr/>
+    <hr/>
 
-      <div>
-        <div data-test="home-type">
-          <button>
+    <div class="row">
+      <div class="d-flex justify-content-start">
+        <div data-test="home-type" class="me-3">
+          <button class="btn btn-outline-secondary">
             Home type
           </button>
         </div>
-        <div data-test="dates">
-          <button>
+        <div data-test="dates" class="me-3">
+          <button class="btn btn-outline-secondary">
             Dates
           </button>
         </div>
-        <div data-test="guests">
-          <button>
+        <div data-test="guests" class="me-3">
+          <button class="btn btn-outline-secondary">
             Guests
           </button>
         </div>
-        <div data-test="price">
-          <button>
+        <div data-test="price" class="me-3">
+          <button class="btn btn-outline-secondary">
             Price
           </button>
         </div>
-        <div data-test="rooms">
-          <button>
+        <div data-test="rooms" class="me-3">
+          <button class="btn btn-outline-secondary">
             Rooms and beds
           </button>
         </div>
         <div data-test="amenities">
-          <button>
+          <button class="btn btn-outline-secondary">
             Amenities
           </button>
         </div>
       </div>
-      <hr/>
     </div>
+    <hr/>
   </div>
 </header>

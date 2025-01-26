@@ -1,32 +1,36 @@
-<div data-test="title" mat-dialog-title>Book {{ home.title }}</div>
-<div data-test="price" class="mt-4"><span class="text-lg font-bold text-blue-500">${{ home.price }}</span> per night</div>
-<div data-test="check-in" class="mt-4">
-  <mat-form-field>
-    <input
-      matInput
-      [matDatepicker]="checkInPicker"
-      placeholder="Choose check in date"
-      [(ngModel)]="checkIn">
-    <mat-datepicker-toggle matSuffix [for]="checkInPicker">
-    </mat-datepicker-toggle>
-    <mat-datepicker #checkInPicker></mat-datepicker>
-  </mat-form-field>
-</div>
-<div data-test="check-out" class="mt-4">
-  <mat-form-field>
-    <input
-      matInput
-      [matDatepicker]="checkOutPicker"
-      placeholder="Choose check out date"
-      [(ngModel)]="checkOut">
-    <mat-datepicker-toggle matSuffix [for]="checkOutPicker">
-    </mat-datepicker-toggle>
-    <mat-datepicker #checkOutPicker></mat-datepicker>
-  </mat-form-field>
-</div>
-<div data-test="total" class="font-bold mt-4">
-  Total: {{ calculateTotal(checkIn, checkOut) }}
-</div>
-<div data-test="book-btn" class="mt-4">
-  <button (click)="bookHome()" class="btn btn-primary w-full">Book</button>
+<div class="container my-5">
+  <div data-test="title" class="h4 mb-3">Book {{ data.home.title }}</div>
+  <div data-test="price" class="mt-4">
+    <span class="text-lg font-weight-bold text-primary">${{ data.home.price }}</span> per night
+  </div>
+  <div data-test="check-in" class="mt-4">
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="checkInPicker"
+        placeholder="Choose check in date"
+        [(ngModel)]="checkIn">
+      <mat-datepicker-toggle matSuffix [for]="checkInPicker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #checkInPicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div data-test="check-out" class="mt-4">
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="checkOutPicker"
+        placeholder="Choose check out date"
+        [(ngModel)]="checkOut">
+      <mat-datepicker-toggle matSuffix [for]="checkOutPicker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #checkOutPicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div data-test="total" class="font-weight-bold mt-4">
+    Total: {{ calculateTotal(checkIn, checkOut) }}
+  </div>
+  <div data-test="book-btn" class="mt-4">
+    <button (click)="bookHome($event)" type="button" class="btn btn-primary w-100 p-3">Book</button>
+  </div>
 </div>

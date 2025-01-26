@@ -19,19 +19,13 @@ export class DataService {
 
   getHomes$(): Observable<Home[]> {
 
-    return this.httpClient.get<Home[]>('assets/homes.json');
-
-  }
-
-  getHome$(id: number): Observable<Home> {
-
-    return this.httpClient.get<Home>('assets/homes.json');
+    return this.httpClient.get<Home[]>('http://localhost:3000/homes');
 
   }
 
   bookHome$() {
 
-    return this.httpClient.post('http://www.mocky.io/v2/5d674012330000f9ae44a00e', {});
+    return this.httpClient.post('http://localhost:3000/bookings', {});
 
   }
 }
