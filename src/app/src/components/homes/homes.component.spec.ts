@@ -14,23 +14,21 @@ describe('HomesComponent', () => {
 
   beforeEach(async () => {
 
-    const dataServiceSpy = jasmine.createSpyObj('DataService', ['getHomes$']);
-    const dialogSpy = jasmine.createSpyObj('MatDialog', ['open']);
+    dataService = jasmine.createSpyObj('DataService', ['getHomes$']);
+    dialog = jasmine.createSpyObj('MatDialog', ['open']);
 
     await TestBed.configureTestingModule({
       imports: [HomesComponent],
       providers: [
         provideHttpClient(),
-        { provide: DataService, useValue: dataServiceSpy },
-        { provide: MatDialog, useValue: dialogSpy }
+        { provide: DataService, useValue: dataService },
+        { provide: MatDialog, useValue: dialog }
       ],
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(HomesComponent);
     component = fixture.componentInstance;
-    dataService = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
-    dialog = TestBed.inject(MatDialog) as jasmine.SpyObj<MatDialog>;
 
   });
 
