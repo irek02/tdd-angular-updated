@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { DataService } from '../../services/data.service';
+import { DialogService } from '../../services/dialog.service';
 
 export interface Home {
   id: string;
@@ -23,11 +24,18 @@ export class HomesComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
+    private dialogService: DialogService,
   ) { }
 
   ngOnInit() {
 
     this.homes$ = this.dataService.getHomes$();
+
+  }
+
+  openDialog() {
+
+    this.dialogService.open();
 
   }
 
