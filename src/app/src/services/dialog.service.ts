@@ -1,15 +1,20 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DialogService {
 
+  readonly dialog = inject(MatDialog);
+
   constructor() { }
 
-  open() {
+  open(component: any, info: any) {
 
-    console.log('hello!');
+    this.dialog.open(component, {
+      data: info,
+    });
 
   }
 }

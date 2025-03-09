@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { DialogService } from '../../services/dialog.service';
+import { HomeBookingComponent } from '../home-booking/home-booking.component';
 
 export interface Home {
   id: string;
@@ -35,7 +36,7 @@ export class HomesComponent implements OnInit {
 
   openDialog() {
 
-    this.dialogService.open();
+    this.dialogService.open(HomeBookingComponent, {});
 
   }
 
