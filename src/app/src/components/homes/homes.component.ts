@@ -34,9 +34,9 @@ export class HomesComponent implements OnInit {
 
   }
 
-  openDialog() {
+  openDialog(home: Home) {
 
-    this.dialogService.open(HomeBookingComponent, {});
+    this.dialogService.open(HomeBookingComponent, home);
 
   }
 
