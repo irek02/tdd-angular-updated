@@ -7,6 +7,8 @@ describe('HomeBookingComponent', () => {
   let component: HomeBookingComponent;
   let fixture: ComponentFixture<HomeBookingComponent>;
 
+  const el = (data_id: string) => fixture.nativeElement.querySelector(`[data-test="${data_id}"]`);
+
   const mockHome = {
     id: '1',
     title: 'Home 1',
@@ -31,14 +33,32 @@ describe('HomeBookingComponent', () => {
 
   it('should show title', () => {
 
-    expect(fixture.nativeElement.querySelector('[data-test="title"').textContent).toContain('Home 1');
+    expect(el('title').textContent).toContain('Home 1');
+
+  });
+
+  it('should show price', () => {
+
+    expect(el('price').textContent).toContain('100');
+
+  });
+
+  it('should show check in date field', () => {
+
+    expect(el('check-in')).toBeTruthy();
+
+  });
+
+  it('should show check out date field', () => {
+
+    expect(el('check-out')).toBeTruthy();
 
   });
 
   //
-  // shold show price
-  // should show check in date field
-  // should show check out date field
+  //
+  //
+  //
   // show show total cost
   // should book home after clicking Book button
 });
