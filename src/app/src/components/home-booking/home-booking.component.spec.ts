@@ -7,7 +7,7 @@ describe('HomeBookingComponent', () => {
   let component: HomeBookingComponent;
   let fixture: ComponentFixture<HomeBookingComponent>;
 
-  const el = (data_id: string) => fixture.nativeElement.querySelector(`[data-test="${data_id}"]`);
+  const el = (selector: string) => fixture.nativeElement.querySelector(selector);
 
   const mockHome = {
     id: '1',
@@ -33,25 +33,25 @@ describe('HomeBookingComponent', () => {
 
   it('should show title', () => {
 
-    expect(el('title').textContent).toContain('Home 1');
+    expect(el(`[data-test="title"]`).textContent).toContain('Home 1');
 
   });
 
   it('should show price', () => {
 
-    expect(el('price').textContent).toContain('100');
+    expect(el(`[data-test="price"]`).textContent).toContain('100');
 
   });
 
   it('should show check in date field', () => {
 
-    expect(el('check-in')).toBeTruthy();
+    expect(el(`[data-test="check-in"]`)).toBeTruthy();
 
   });
 
   it('should show check out date field', () => {
 
-    expect(el('check-out')).toBeTruthy();
+    expect(el(`[data-test="check-out"]`)).toBeTruthy();
 
   });
 
