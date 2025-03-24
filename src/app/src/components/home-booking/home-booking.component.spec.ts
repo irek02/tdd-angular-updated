@@ -33,13 +33,13 @@ describe('HomeBookingComponent', () => {
 
   it('should show title', () => {
 
-    expect(el(`[data-test="title"]`).textContent).toContain('Home 1');
+    expect(el(`[data-test="title"]`).textContent).toContain('Book Home 1');
 
   });
 
   it('should show price', () => {
 
-    expect(el(`[data-test="price"]`).textContent).toContain('100');
+    expect(el(`[data-test="price"]`).textContent).toContain('$100 per night');
 
   });
 
@@ -55,10 +55,29 @@ describe('HomeBookingComponent', () => {
 
   });
 
+  it('show show total cost', () => {
+
+    // user enters check in date: 12/20/25
+    const checkIn = el(`[data-test="check-in"] input`);
+    checkIn.value = '12/20/25';
+    checkIn.dispatchEvent(new Event('input'));
+
+    // user enters check out date: 12/23/25
+    const checkOut = el(`[data-test="check-out"] input`);
+    checkOut.value = '12/23/25';
+    checkOut.dispatchEvent(new Event('input'));
+
+    fixture.detectChanges();
+
+    // asset that the total shows 125x3 = 375
+    expect(el(`[data-test="total"]`).textContent).toContain('Total: $300');
+
+  });
+
   //
   //
   //
   //
-  // show show total cost
+  //
   // should book home after clicking Book button
 });

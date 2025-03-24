@@ -1,10 +1,13 @@
 <div class="container my-4">
-  <div data-test="title">{{ home.title }}</div>
-  <div data-test="price">{{ home.price }}</div>
+  <div data-test="title">Book {{ home.title }}</div>
+  <div data-test="price">${{ home.price }} per night</div>
   <div data-test="check-in">
-    <input>
+    <input [(ngModel)]="checkIn" />
   </div>
   <div data-test="check-out">
-    <input>
+    <input [(ngModel)]="checkOut" />
+  </div>
+  <div data-test="total">
+    Total: ${{ calculateTotal() }}
   </div>
 </div>
