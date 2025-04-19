@@ -17,4 +17,10 @@ export class DataService {
     return this.httpClient.get<Home[]>('http://localhost:3000/homes');
 
   }
+
+  bookHome(home: Home) {
+
+    return this.httpClient.post('http://localhost:3000/bookings', {});
+
+  }
 }

@@ -2,10 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeBookingComponent } from './home-booking.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DataService } from '../../services/data.service';
 
 describe('HomeBookingComponent', () => {
   let component: HomeBookingComponent;
   let fixture: ComponentFixture<HomeBookingComponent>;
+  let dataService: jasmine.SpyObj<DataService>;
 
   const el = (selector: string) => fixture.nativeElement.querySelector(selector);
 
@@ -18,10 +20,14 @@ describe('HomeBookingComponent', () => {
   };
 
   beforeEach(async () => {
+
+    dataService = jasmine.createSpyObj('DataService', ['bookHome']);
+
     await TestBed.configureTestingModule({
       imports: [HomeBookingComponent],
       providers: [
-        { provide: MAT_DIALOG_DATA, useValue: mockHome }
+        { provide: MAT_DIALOG_DATA, useValue: mockHome },
+        { provide: DataService, useValue: dataService },
       ],
     })
     .compileComponents();
@@ -74,10 +80,31 @@ describe('HomeBookingComponent', () => {
 
   });
 
+  it('should book home after clicking Book button', () => {
+
+    // user enters check in date: 12/20/25
+    const checkIn = el(`[data-test="check-in"] input`);
+    checkIn.value = '12/20/25';
+    checkIn.dispatchEvent(new Event('input'));
+
+    // user enters check out date: 12/23/25
+    const checkOut = el(`[data-test="check-out"] input`);
+    checkOut.value = '12/23/25';
+    checkOut.dispatchEvent(new Event('input'));
+
+    fixture.detectChanges();
+
+    // click on Book button
+    el('[data-test="book-btn"] button').click();
+    // assert that the data service was used to send the booking request
+    expect(dataService.bookHome).toHaveBeenCalled();
+
+  });
+
   //
   //
   //
   //
   //
-  // should book home after clicking Book button
+  //
 });

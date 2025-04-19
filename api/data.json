@@ -21,5 +21,7 @@
       "location": "chicago",
       "price": "325"
     }
+  ],
+  "bookings": [
   ]
 }
