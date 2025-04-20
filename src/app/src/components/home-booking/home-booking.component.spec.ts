@@ -1,13 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HomeBookingComponent } from './home-booking.component';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DataService } from '../../services/data.service';
+import { of } from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 describe('HomeBookingComponent', () => {
   let component: HomeBookingComponent;
   let fixture: ComponentFixture<HomeBookingComponent>;
   let dataService: jasmine.SpyObj<DataService>;
+  let dialogRef: jasmine.SpyObj<MatDialogRef<HomeBookingComponent>>;
+  let snackBar: jasmine.SpyObj<MatSnackBar>;
 
   const el = (selector: string) => fixture.nativeElement.querySelector(selector);
 
@@ -22,12 +25,17 @@ describe('HomeBookingComponent', () => {
   beforeEach(async () => {
 
     dataService = jasmine.createSpyObj('DataService', ['bookHome']);
+    dataService.bookHome.and.returnValue(of({}));
+    dialogRef = jasmine.createSpyObj('MatDialogRef', ['close']);
+    snackBar = jasmine.createSpyObj('MatSnackBar', ['open']);
 
     await TestBed.configureTestingModule({
       imports: [HomeBookingComponent],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: mockHome },
         { provide: DataService, useValue: dataService },
+        { provide: MatDialogRef, useValue: dialogRef },
+        { provide: MatSnackBar, useValue: snackBar },
       ],
     })
     .compileComponents();
@@ -98,6 +106,25 @@ describe('HomeBookingComponent', () => {
     el('[data-test="book-btn"] button').click();
     // assert that the data service was used to send the booking request
     expect(dataService.bookHome).toHaveBeenCalled();
+
+  });
+
+  it('should close dialog and show notification after booking home', () => {
+
+    const checkIn = el(`[data-test="check-in"] input`);
+    checkIn.value = '12/20/25';
+    checkIn.dispatchEvent(new Event('input'));
+
+    const checkOut = el(`[data-test="check-out"] input`);
+    checkOut.value = '12/23/25';
+    checkOut.dispatchEvent(new Event('input'));
+
+    fixture.detectChanges();
+
+    el('[data-test="book-btn"] button').click();
+
+    expect(dialogRef.close).toHaveBeenCalled();
+    expect(snackBar.open).toHaveBeenCalled();
 
   });
 

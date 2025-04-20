@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Home } from '../homes/homes.component';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../../services/data.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home-booking',
@@ -21,6 +22,8 @@ export class HomeBookingComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
+    private dialogRef: MatDialogRef<HomeBookingComponent>,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -29,13 +32,11 @@ export class HomeBookingComponent implements OnInit {
 
   calculateTotal() {
 
-    console.log(this.checkIn, this.checkOut)
     // calculate the number of nights between check in and check out dates
     const start: any = new Date(this.checkIn);
     const end: any = new Date(this.checkOut);
     const diffInMs = end - start;
     const nights = diffInMs / (1000 * 60 * 60 * 24);
-    console.log(nights);
 
     // multiply the number of nights by the price of the home
     return nights * parseInt(this.home.price, 10);
@@ -44,7 +45,12 @@ export class HomeBookingComponent implements OnInit {
 
   bookHome() {
 
-    this.dataService.bookHome(this.home).subscribe();
+    this.dataService.bookHome(this.home).subscribe(() => {
+      this.dialogRef.close();
+      this.snackBar.open('Home booked successfully', 'OK', {
+        duration: 2000,
+      });
+    });
 
   }
 
