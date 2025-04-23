@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DataService } from '../../services/data.service';
 import { of } from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 describe('HomeBookingComponent', () => {
   let component: HomeBookingComponent;
@@ -36,6 +37,7 @@ describe('HomeBookingComponent', () => {
         { provide: DataService, useValue: dataService },
         { provide: MatDialogRef, useValue: dialogRef },
         { provide: MatSnackBar, useValue: snackBar },
+        provideAnimationsAsync(),
       ],
     })
     .compileComponents();
@@ -128,10 +130,4 @@ describe('HomeBookingComponent', () => {
 
   });
 
-  //
-  //
-  //
-  //
-  //
-  //
 });

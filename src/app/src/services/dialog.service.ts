@@ -14,6 +14,7 @@ export class DialogService {
 
     this.dialog.open(component, {
       data: info,
+      width: '400px',
     });
 
   }
