@@ -130,4 +130,22 @@ describe('HomeBookingComponent', () => {
 
   });
 
+  it('should show -- when the dates are invalid', () => {
+
+    // user enters check in date: 12/20/25
+    const checkIn = el(`[data-test="check-in"] input`);
+    checkIn.value = '12/23/25';
+    checkIn.dispatchEvent(new Event('input'));
+
+    // user enters check out date: 12/23/25
+    const checkOut = el(`[data-test="check-out"] input`);
+    checkOut.value = '12/20/25';
+    checkOut.dispatchEvent(new Event('input'));
+
+    fixture.detectChanges();
+
+    expect(el(`[data-test="total"]`).textContent).toContain('Total: --');
+
+  });
+
 });

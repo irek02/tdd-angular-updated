@@ -46,6 +46,14 @@ export class HomeBookingComponent implements OnInit {
     const diffInMs = end - start;
     const nights = diffInMs / (1000 * 60 * 60 * 24);
 
+    const res = nights * parseInt(this.home.price, 10);
+
+    if (isNaN(res) || res < 0) {
+      return '--';
+    } else {
+      return '$' + res;
+    }
+
     // multiply the number of nights by the price of the home
     return nights * parseInt(this.home.price, 10);
 
